@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import {Pageable} from '../shared/models/pageable';
-=======
 import { Pageable, PageableType } from '../shared/models/pageable';
->>>>>>> b4e59db ([SGSA-112] ajout de tag de démo, problème de gestion des tag courant)
 
 export class Constants {
   public static readonly API_ENDPOINT: string = '/api';
