@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {Pageable} from '../shared/models/pageable';
+=======
+import { Pageable, PageableType } from '../shared/models/pageable';
+>>>>>>> b4e59db ([SGSA-112] ajout de tag de démo, problème de gestion des tag courant)
 
 export class Constants {
   public static readonly API_ENDPOINT: string = '/api';
@@ -14,7 +18,7 @@ export class Constants {
     rowsPerPages: [10, 25, 50],
     totalPages: 0,
     empty: true,
-    last: true
+    last: true,
   };
   /**
    * Cette constante est utilisée pour outrepasser la pagination d'une réponse : la page contiendra tous les résultats entre 0 et la
@@ -25,19 +29,35 @@ export class Constants {
     rows: 2147483647, // correspond à Integer.MAX_VALUE
   };
 
-  public static readonly DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+  public static readonly DATE_REGEX =
+    /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
   public static readonly ROWS_PER_PAGE_OPTIONS = [10, 25, 50];
 
-  public static readonly USER_IMAGE_DEFAULT_URI = 'assets/img/avatar-ia-user.png';
+  public static readonly USER_IMAGE_DEFAULT_URI =
+    'assets/img/avatar-ia-user.png';
 
-  public static readonly GROUP_IMAGE_DEFAULT_URI = 'assets/img/avatar-ia-group.png';
+  public static readonly GROUP_IMAGE_DEFAULT_URI =
+    'assets/img/avatar-ia-group.png';
 
-  public static readonly COMPANY_IMAGE_DEFAULT_URI = 'assets/img/avatar-ia-group.png';
+  public static readonly COMPANY_IMAGE_DEFAULT_URI =
+    'assets/img/avatar-ia-group.png';
 
   public static readonly LATEST_JOBS_COUNT = 4;
 
   public static readonly LATEST_POSTS_COUNT = 3;
 
-  public static readonly DEFAULT_YEAR_RANGE = `1900:${new Date().getFullYear() + 1}`;
+  public static readonly DEFAULT_YEAR_RANGE = `1900:${
+    new Date().getFullYear() + 1
+  }`;
+
+  public static readonly TAG_LIST_DEMO = [
+    'Armee',
+    'Informatique',
+    'Recherche',
+    'Travail',
+    'Communauté',
+    'Offre',
+    'Ingeniérie',
+  ];
 }
