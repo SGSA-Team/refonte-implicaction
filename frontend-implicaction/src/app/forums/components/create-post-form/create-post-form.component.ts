@@ -24,6 +24,8 @@ export class CreatePostFormComponent extends SidebarContentComponent implements 
   postPayload: PostPayload = {name: '', groupId: ''};
   groups: Group[];
   currentUser: User = {};
+  currentParamGroupId: string;
+  currentGroup: Group;
   selectedGroup: Group;
   constant = Constants;
 
@@ -33,24 +35,27 @@ export class CreatePostFormComponent extends SidebarContentComponent implements 
     private postService: PostService,
     private groupService: GroupService,
     private toasterService: ToasterService,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
   ) {
     super();
   }
 
   ngOnInit(): void {
+    this.currentParamGroupId = this.router.url.split("/").pop()
     this.createPostForm = new UntypedFormGroup({
       name: new UntypedFormControl('', Validators.required),
       url: new UntypedFormControl(''),
       description: new UntypedFormControl(''),
     });
-
     this.currentUser = this.authService.getCurrentUser();
 
     this.groupService
       .getAllGroups(Constants.ALL_VALUE_PAGEABLE)
       .subscribe(
-        data => this.groups = data.content,
+        data => {
+          this.groups = data.content
+          this.currentGroup = this.groups.find(group => group.id == this.currentParamGroupId)
+        },
         () => this.toasterService.error('Oops', 'Une erreur est survenue lors de la récupération des groupes')
       );
   }
@@ -61,7 +66,7 @@ export class CreatePostFormComponent extends SidebarContentComponent implements 
     }
 
     this.postPayload.name = this.createPostForm.get('name').value;
-    this.postPayload.groupId = this.selectedGroup?.id ?? null;
+    this.postPayload.groupId = this.selectedGroup?.id ?? this.currentParamGroupId;
     this.postPayload.description = this.createPostForm.get('description').value;
 
     this.postService

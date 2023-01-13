@@ -341,8 +341,8 @@ export class ApiEndpointsService {
     return ApiEndpointsService.createUrlWithPageable(uri, pageable);
   }
 
-  createPostEndpoint(): string {
-    return ApiEndpointsService.createUrl(Uris.POSTS.BASE_URI);
+  createPostEndpoint(groupId: string): string {
+    return ApiEndpointsService.createUrlWithPathVariables(Uris.POSTS.CREATE_POST, [groupId]);
   }
 
   /**

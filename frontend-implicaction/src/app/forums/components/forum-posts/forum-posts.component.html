@@ -9,7 +9,7 @@
       [tableType]="tableType.POST"
     ></app-custom-table-with-search-bar>
     <div id="forum-right-content">
-      <button id="create-post-btn">
+      <button (click)="openSidebarCreationPost()" id="create-post-btn">
         <i class="pi pi-comment me-4" style="font-size: 1.5rem"></i>
         <span class="me-4">Créer un sujet</span>
       </button>

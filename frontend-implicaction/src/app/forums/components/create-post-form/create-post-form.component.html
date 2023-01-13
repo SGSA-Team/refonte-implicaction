@@ -9,7 +9,8 @@
       </div>
     </div>
     <div class="col-md-6 d-flex align-items-center justify-content-end">
-      <p-dropdown [(ngModel)]="selectedGroup" [ngModelOptions]="{standalone: true}" [options]="groups"
+      <p-dropdown *ngIf="currentGroup === undefined" [(ngModel)]="selectedGroup" [ngModelOptions]="{standalone: true}"
+                  [options]="groups"
                   [virtualScroll]="true" optionLabel="name" placeholder="sélectionner un groupe"
                   styleClass="rounded-pill ps-3">
         <ng-template pTemplate="selectedItem">
@@ -29,14 +30,14 @@
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input class="form-control px-4" formControlName="name" id="postNameInput" placeholder="Titre du forum"/>
+    <input class="form-control px-4" formControlName="name" id="postNameInput" placeholder="Titre du post"/>
     <label class="form-label px-4" for="postNameInput">
-      Titre du forum
+      Titre du post
     </label>
   </div>
 
   <div class="my-2 mb-4">
-    <p-editor [style]="{'height':'200px'}" formControlName="description" placeholder="Contenu du forum">
+    <p-editor [style]="{'height':'200px'}" formControlName="description" placeholder="Contenu du post">
     </p-editor>
   </div>
   <div class="d-flex justify-content-end sidebar-options">
