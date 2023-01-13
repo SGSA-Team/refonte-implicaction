@@ -23,8 +23,17 @@
   justify-content: center;
   align-items: center;
   color: white;
+  transition: 0.2s all ease-in-out;
   font-weight: bold;
   border: 1px solid white;
+
+  &:active, &:focus {
+    outline: 4px solid #0466b566
+  }
+
+  &:hover {
+    background-color: #21314b;
+  }
 }
 
 .header {
@@ -52,6 +61,7 @@
 
   }
 }
+
 
 .post-num {
   border: 1px solid #dddddd;
