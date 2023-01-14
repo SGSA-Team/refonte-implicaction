@@ -58,12 +58,16 @@ export class ForumPostsComponent
   }
 
   openSidebarCreationPost(): void {
-    this.sidebarService
-      .open({
-        component: CreatePostFormComponent,
-        title: 'Créer un post',
-        width: 650
-      });
+    this.route.params.subscribe(params => {
+      this.sidebarService
+        .open({
+          component: CreatePostFormComponent,
+          title: 'Créer un post',
+          width: 800,
+          groupId: params.forumId
+        });
+    })
+
   }
 
   protected innerPaginate(): void {

@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col-md-6 d-flex align-items-center justify-content-end">
-      <p-dropdown *ngIf="currentGroup === undefined" [(ngModel)]="selectedGroup" [ngModelOptions]="{standalone: true}"
+      <p-dropdown *ngIf="!currentGroup" [(ngModel)]="selectedGroup" [ngModelOptions]="{standalone: true}"
                   [options]="groups"
                   [virtualScroll]="true" optionLabel="name" placeholder="sélectionner un groupe"
                   styleClass="rounded-pill ps-3">
