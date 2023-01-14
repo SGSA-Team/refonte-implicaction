@@ -33,6 +33,7 @@ export interface SidebarProps {
   /**
    * largeur en pixels (px)
    */
+  groupId?: string;
   width?: number;
   input?: SidebarInputs;
   groupId?: string
