@@ -27,6 +27,7 @@ export class CreatePostFormComponent
   implements OnInit
 {
   createPostForm: UntypedFormGroup;
+  editorConfig: any;
   postPayload: PostPayload = { name: '', groupId: '' };
   groups: Group[];
   currentUser: User = {};
@@ -47,6 +48,13 @@ export class CreatePostFormComponent
   }
 
   ngOnInit(): void {
+    this.editorConfig = {
+      plugins: 'lists link image table code help wordcount media save',
+      media_live_embeds: true,
+      language: 'fr_FR',
+      placeholder: 'Contenu du post',
+      branding: false,
+    };
     this.sidebarService.getContent().subscribe((sidebarData) => {
       this.currentParamGroupId = sidebarData.groupId;
     });

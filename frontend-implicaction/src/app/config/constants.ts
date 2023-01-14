@@ -1,4 +1,4 @@
-import { Pageable, PageableType } from '../shared/models/pageable';
+import {Pageable, PageableType} from '../shared/models/pageable';
 
 export class Constants {
   public static readonly API_ENDPOINT: string = '/api';
@@ -46,6 +46,7 @@ export class Constants {
   public static readonly DEFAULT_YEAR_RANGE = `1900:${
     new Date().getFullYear() + 1
   }`;
+  public static readonly TINYMCE_API_KEY = "l69xj43xtfhsi9nm3l8arxs95ilk3lfthoes67o1w8cd7sl3"
 
   public static readonly TAG_LIST_DEMO = [
     'Armee',
