@@ -41,7 +41,9 @@ export class CreatePostFormComponent extends SidebarContentComponent implements 
   }
 
   ngOnInit(): void {
-    this.currentParamGroupId = this.router.url.split("/").pop()
+    this.sidebarService.getContent().subscribe(sidebarContent => {
+      this.currentParamGroupId = sidebarContent.groupId
+    })
     this.createPostForm = new UntypedFormGroup({
       name: new UntypedFormControl('', Validators.required),
       url: new UntypedFormControl(''),
@@ -54,7 +56,8 @@ export class CreatePostFormComponent extends SidebarContentComponent implements 
       .subscribe(
         data => {
           this.groups = data.content
-          this.currentGroup = this.groups.find(group => group.id == this.currentParamGroupId)
+          this.currentGroup = this.groups.find(group => String(group.id) === this.currentParamGroupId)
+          console.log(this.currentGroup)
         },
         () => this.toasterService.error('Oops', 'Une erreur est survenue lors de la récupération des groupes')
       );
