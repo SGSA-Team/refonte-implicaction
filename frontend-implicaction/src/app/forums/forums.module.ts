@@ -38,7 +38,6 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {ForumPostsComponent} from './components/forum-posts/forum-posts.component';
 import {EditorModule as TinyMCEditor} from '@tinymce/tinymce-angular';
-import {EditorComponent} from "./components/editor/editor.component";
 
 
 @NgModule({
@@ -62,8 +61,7 @@ import {EditorComponent} from "./components/editor/editor.component";
     CustomTableWithSearchBarComponent,
     ForumCardComponent,
     PostCardComponent,
-    ForumPostsComponent,
-    EditorComponent
+    ForumPostsComponent
   ],
   imports: [
     CommonModule,
