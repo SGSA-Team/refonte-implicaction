@@ -3,14 +3,16 @@
     <img
       [src]="post?.userImageUrl || 'assets/img/job-posting-img.png'"
       alt="group-logo"
-      class="d-none d-sm-inline-block logo element-img"
+      class="d-none d-sm-inline-block logo element-img cursor-pointer"
       [routerLink]="userProfileUrl"
     />
   </div>
   <div class="element-info">
     <h4 class="fw-bold">{{ post.name }}</h4>
     <div class="post-description">
-      <span [routerLink]="userProfileUrl">{{ post.username }}</span>
+      <span class="cursor-pointer" [routerLink]="userProfileUrl">{{
+        post.username
+      }}</span>
       <span>{{ post.duration }}</span>
     </div>
   </div>
