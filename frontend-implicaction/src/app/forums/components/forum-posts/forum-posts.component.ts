@@ -10,6 +10,8 @@ import {Post} from "../../model/post";
 import {finalize} from "rxjs/operators";
 import {ToasterService} from "../../../core/services/toaster.service";
 import {PostService} from "../../services/post.service";
+import {SidebarService} from "../../../shared/services/sidebar.service";
+import {CreatePostFormComponent} from "../create-post-form/create-post-form.component";
 
 @Component({
   selector: 'app-forum-posts',
@@ -27,7 +29,8 @@ export class ForumPostsComponent
   constructor(
     protected route: ActivatedRoute,
     private toastService: ToasterService,
-    private postService: PostService
+    private postService: PostService,
+    private sidebarService: SidebarService
   ) {
     super(route);
   }
@@ -52,6 +55,19 @@ export class ForumPostsComponent
       },
 
     ];
+  }
+
+  openSidebarCreationPost(): void {
+    this.route.params.subscribe(params => {
+      this.sidebarService
+        .open({
+          component: CreatePostFormComponent,
+          title: 'Créer un post',
+          width: 800,
+          groupId: params.forumId
+        });
+    })
+
   }
 
   protected innerPaginate(): void {

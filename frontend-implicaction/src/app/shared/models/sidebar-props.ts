@@ -35,4 +35,5 @@ export interface SidebarProps {
    */
   width?: number;
   input?: SidebarInputs;
+  groupId?: string
 }
