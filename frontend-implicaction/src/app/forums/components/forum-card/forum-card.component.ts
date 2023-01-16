@@ -14,6 +14,5 @@ export class ForumCardComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.redirectionUrl = `/${Univers.FORUMS.url}/${this.group.id}`;
-    console.log(this.redirectionUrl);
   }
 }
