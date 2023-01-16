@@ -10,5 +10,9 @@ import { Univers } from '../../../shared/enums/univers';
 export class PostCardComponent implements OnInit {
   @Input() post: Post;
   readonly univers = Univers;
-  ngOnInit(): void {}
+  userProfileUrl: string;
+
+  ngOnInit(): void {
+    this.userProfileUrl = `/${this.univers.USERS.url}/${this.post.userId}/profile`;
+  }
 }
