@@ -42,7 +42,7 @@ export class PostService {
     return this.http.post(this.endpointsService.createPostEndpoint(postPayload.groupId), postPayload);
   }
 
-  getPopularPostsByForum(pageable: Pageable<any>, groupId: number): Observable<any> {
+  getPopularPostsByForum(pageable: Pageable<any>, groupId: string): Observable<any> {
     return this.http.get(this.endpointsService.getPopularPostsByForum(pageable, groupId));
   }
 }

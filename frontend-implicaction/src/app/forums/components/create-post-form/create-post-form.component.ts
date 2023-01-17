@@ -71,7 +71,6 @@ export class CreatePostFormComponent
         this.currentGroup = this.groups.find(
           (group) => String(group.id) === this.currentParamGroupId
         );
-        console.log(this.currentGroup);
       },
       () =>
         this.toasterService.error(

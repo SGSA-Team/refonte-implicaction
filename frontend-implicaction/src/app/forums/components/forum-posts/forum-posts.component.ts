@@ -24,6 +24,7 @@ export class ForumPostsComponent
   optionsTopMenu: MenuItem[];
   tableType = ForumTableTypesEnum;
   topRange: number = 7;
+  forumId: string;
 
   constructor(
     protected route: ActivatedRoute,
@@ -35,6 +36,9 @@ export class ForumPostsComponent
   }
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.forumId = params.forumId;
+    });
     this.isLoading = true;
     this.pageable.rowsPerPages = this.ROWS_PER_PAGE_OPTIONS;
     this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0];
@@ -59,19 +63,17 @@ export class ForumPostsComponent
   }
 
   openSidebarCreationPost(): void {
-    this.route.params.subscribe((params) => {
-      this.sidebarService.open({
-        component: CreatePostFormComponent,
-        title: 'Créer un post',
-        width: 800,
-        groupId: params.forumId,
-      });
+    this.sidebarService.open({
+      component: CreatePostFormComponent,
+      title: 'Créer un post',
+      width: 800,
+      groupId: this.forumId,
     });
   }
 
   protected innerPaginate(): void {
     this.postService
-      .getPopularPostsByForum(this.pageable, 33)
+      .getPopularPostsByForum(this.pageable, this.forumId)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe(
         (data) => {
