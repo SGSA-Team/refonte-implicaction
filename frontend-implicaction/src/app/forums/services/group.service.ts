@@ -1,11 +1,11 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Group } from '../model/group';
-import { HttpClient } from '@angular/common/http';
-import { ApiEndpointsService } from '../../core/services/api-endpoints.service';
-import { Pageable } from '../../shared/models/pageable';
-import { JobPosting } from '../../shared/models/job-posting';
-import { Tag } from '../components/top-group-listing/top-group-listing.component';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Group} from '../model/group';
+import {HttpClient} from '@angular/common/http';
+import {ApiEndpointsService} from '../../core/services/api-endpoints.service';
+import {Pageable} from '../../shared/models/pageable';
+import {JobPosting} from '../../shared/models/job-posting';
+import {Tag} from '../components/top-group-listing/top-group-listing.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,8 @@ export class GroupService {
   constructor(
     private http: HttpClient,
     private apiEndpointService: ApiEndpointsService
-  ) {}
+  ) {
+  }
 
   createGroup(formData: FormData): Observable<Group> {
     return this.http.post<Group>(
