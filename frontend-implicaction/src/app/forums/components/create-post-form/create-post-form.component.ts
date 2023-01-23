@@ -1,21 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { SidebarContentComponent } from '../../../shared/models/sidebar-props';
-import { PostPayload } from '../../model/post-payload';
-import {
-  UntypedFormControl,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
-import { Group } from '../../model/group';
-import { Router } from '@angular/router';
-import { PostService } from '../../services/post.service';
-import { GroupService } from '../../services/group.service';
-import { ToasterService } from '../../../core/services/toaster.service';
-import { Univers } from '../../../shared/enums/univers';
-import { Constants } from '../../../config/constants';
-import { AuthService } from '../../../shared/services/auth.service';
-import { User } from '../../../shared/models/user';
-import { SidebarService } from '../../../shared/services/sidebar.service';
+import {Component, OnInit} from '@angular/core';
+import {SidebarContentComponent} from '../../../shared/models/sidebar-props';
+import {PostPayload} from '../../model/post-payload';
+import {UntypedFormControl, UntypedFormGroup, Validators,} from '@angular/forms';
+import {Group} from '../../model/group';
+import {Router} from '@angular/router';
+import {PostService} from '../../services/post.service';
+import {GroupService} from '../../services/group.service';
+import {ToasterService} from '../../../core/services/toaster.service';
+import {Univers} from '../../../shared/enums/univers';
+import {Constants} from '../../../config/constants';
+import {AuthService} from '../../../shared/services/auth.service';
+import {User} from '../../../shared/models/user';
+import {SidebarService} from '../../../shared/services/sidebar.service';
 
 @Component({
   selector: 'app-create-post-form',
@@ -24,11 +20,10 @@ import { SidebarService } from '../../../shared/services/sidebar.service';
 })
 export class CreatePostFormComponent
   extends SidebarContentComponent
-  implements OnInit
-{
+  implements OnInit {
   createPostForm: UntypedFormGroup;
   editorConfig: any;
-  postPayload: PostPayload = { name: '', groupId: '' };
+  postPayload: PostPayload = {name: '', groupId: ''};
   groups: Group[];
   currentUser: User = {};
   currentParamGroupId: string;

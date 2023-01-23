@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ForumTableTypesEnum } from '../../enums/table-type-enum';
-import { MenuItem } from 'primeng/api';
-import { BaseWithPaginationAndFilterComponent } from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
-import { Criteria } from '../../../shared/models/Criteria';
-import { ActivatedRoute } from '@angular/router';
-import { Post } from '../../model/post';
-import { finalize } from 'rxjs/operators';
-import { ToasterService } from '../../../core/services/toaster.service';
-import { PostService } from '../../services/post.service';
-import { SidebarService } from '../../../shared/services/sidebar.service';
-import { CreatePostFormComponent } from '../create-post-form/create-post-form.component';
+import {Component, OnInit} from '@angular/core';
+import {ForumTableTypesEnum} from '../../enums/table-type-enum';
+import {MenuItem} from 'primeng/api';
+import {
+  BaseWithPaginationAndFilterComponent
+} from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
+import {Criteria} from '../../../shared/models/Criteria';
+import {ActivatedRoute} from '@angular/router';
+import {Post} from '../../model/post';
+import {finalize} from 'rxjs/operators';
+import {ToasterService} from '../../../core/services/toaster.service';
+import {PostService} from '../../services/post.service';
+import {SidebarService} from '../../../shared/services/sidebar.service';
+import {CreatePostFormComponent} from '../create-post-form/create-post-form.component';
 
 @Component({
   selector: 'app-forum-posts',
@@ -18,8 +20,7 @@ import { CreatePostFormComponent } from '../create-post-form/create-post-form.co
 })
 export class ForumPostsComponent
   extends BaseWithPaginationAndFilterComponent<Post, Criteria>
-  implements OnInit
-{
+  implements OnInit {
   readonly ROWS_PER_PAGE_OPTIONS = [5];
   optionsTopMenu: MenuItem[];
   tableType = ForumTableTypesEnum;

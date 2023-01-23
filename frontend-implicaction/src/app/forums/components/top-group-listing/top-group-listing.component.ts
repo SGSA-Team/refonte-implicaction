@@ -1,18 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Group } from '../../model/group';
-import { GroupService } from '../../services/group.service';
-import { ToasterService } from '../../../core/services/toaster.service';
-import { SidebarService } from '../../../shared/services/sidebar.service';
-import { CreateGroupFormComponent } from '../create-group-form/create-group-form.component';
-import { finalize } from 'rxjs/operators';
-import { Constants } from '../../../config/constants';
-import { AuthService } from '../../../shared/services/auth.service';
-import { UserService } from '../../../user/services/user.service';
-import { User } from '../../../shared/models/user';
-import { Univers } from '../../../shared/enums/univers';
-import { Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { Post } from '../../model/post';
+import {Component, Input, OnInit} from '@angular/core';
+import {Group} from '../../model/group';
+import {GroupService} from '../../services/group.service';
+import {ToasterService} from '../../../core/services/toaster.service';
+import {SidebarService} from '../../../shared/services/sidebar.service';
+import {CreateGroupFormComponent} from '../create-group-form/create-group-form.component';
+import {finalize, take} from 'rxjs/operators';
+import {Constants} from '../../../config/constants';
+import {AuthService} from '../../../shared/services/auth.service';
+import {UserService} from '../../../user/services/user.service';
+import {User} from '../../../shared/models/user';
+import {Univers} from '../../../shared/enums/univers';
 
 @Component({
   selector: 'app-top-group-listing',
@@ -89,6 +86,7 @@ export class TopGroupListingComponent implements OnInit {
           )
       );
   }
+
   applyTag(selectedTag: Tag) {
     this.groupService.filterTag$.pipe(take(1)).subscribe((tags) => {
       if (!tags.includes(selectedTag)) {
@@ -99,6 +97,7 @@ export class TopGroupListingComponent implements OnInit {
       }
     });
   }
+
   removeTag(idx: number) {
     this.groupService.filterTag$.pipe(take(1)).subscribe((tags) => {
       tags.find((v) => v.value === idx).active = false;
@@ -138,5 +137,6 @@ export interface Tag {
   name: string;
   value: number;
   active: boolean;
+
   callBack?<T>(content: T[]): T[];
 }
