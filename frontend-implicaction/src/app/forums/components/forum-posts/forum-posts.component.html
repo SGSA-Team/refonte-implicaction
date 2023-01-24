@@ -19,7 +19,6 @@
           <div class="card-header header text-left">
             <h2 class="m-0">Top</h2>
             <p-tabMenu [activeItem]="optionsTopMenu[0]" [model]="optionsTopMenu">
-
             </p-tabMenu>
           </div>
           <div *ngIf="!isLoading; else skeletonTop" class="card-body">
@@ -35,7 +34,6 @@
         </div>
       </div>
       <app-top-group-listing
-        class=""
       ></app-top-group-listing>
     </div>
     <ng-template #skeletonTop>

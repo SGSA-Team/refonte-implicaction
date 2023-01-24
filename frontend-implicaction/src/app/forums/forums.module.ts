@@ -37,6 +37,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {ForumPostsComponent} from './components/forum-posts/forum-posts.component';
+import {EditorModule as TinyMCEditor} from '@tinymce/tinymce-angular';
+
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import {ForumPostsComponent} from './components/forum-posts/forum-posts.componen
     CustomTableWithSearchBarComponent,
     ForumCardComponent,
     PostCardComponent,
-    ForumPostsComponent,
+    ForumPostsComponent
   ],
   imports: [
     CommonModule,
@@ -78,6 +80,7 @@ import {ForumPostsComponent} from './components/forum-posts/forum-posts.componen
     ToggleButtonModule,
     ButtonModule,
     InputTextModule,
+    TinyMCEditor
   ],
 })
 export class ForumsModule {

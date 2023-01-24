@@ -1,4 +1,4 @@
-import { EnumCodeLabelAbstract } from 'src/app/shared/enums/enum-code-label-abstract.enum';
+import {EnumCodeLabelAbstract} from 'src/app/shared/enums/enum-code-label-abstract.enum';
 
 export enum ForumTableTypeCode {
   FORUM = 'FORUM',

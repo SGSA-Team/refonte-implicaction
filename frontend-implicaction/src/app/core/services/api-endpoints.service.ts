@@ -332,7 +332,7 @@ export class ApiEndpointsService {
     return ApiEndpointsService.createUrlWithPageable(uri, pageable);
   }
 
-  getPopularPostsByForum(pageable: any, groupId: number): string {
+  getPopularPostsByForum(pageable: any, groupId: string): string {
     const uri = ApiEndpointsService.createUrlWithPathVariables(Uris.POSTS.POPULAR_POSTS, [groupId])
       // createUrlWithPathVariables et createUrlWithPageable ajoutent le endpoint ('/api/') de l'api en début de l'adresse générée
       // on se retrouve donc avec une répétition en les chaînant. Il faut donc en supprimer un

@@ -1,9 +1,8 @@
-import {WorkExperience} from './work-experience';
-import {Training} from './training';
-import {Type} from '@angular/core';
-import {JobPosting} from './job-posting';
-import {Company} from './company';
-
+import { WorkExperience } from './work-experience';
+import { Training } from './training';
+import { Type } from '@angular/core';
+import { JobPosting } from './job-posting';
+import { Company } from './company';
 
 /**
  * Inputs partagés en entrée pour un contenu de la sidebar
@@ -23,7 +22,6 @@ export class SidebarContentComponent {
   sidebarInput?: SidebarInputs;
 }
 
-
 /**
  * Les propriétés de la sidebar
  */
@@ -35,5 +33,5 @@ export interface SidebarProps {
    */
   width?: number;
   input?: SidebarInputs;
-  groupId?: string
+  groupId?: string;
 }

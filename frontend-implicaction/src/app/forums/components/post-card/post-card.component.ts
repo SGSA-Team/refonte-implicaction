@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../../model/post';
-import { Univers } from '../../../shared/enums/univers';
+import {Component, Input, OnInit} from '@angular/core';
+import {Post} from '../../model/post';
+import {Univers} from '../../../shared/enums/univers';
 
 @Component({
   selector: 'app-post-card',

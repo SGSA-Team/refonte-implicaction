@@ -1,6 +1,6 @@
-import { EnumCodeLabelAbstract } from 'src/app/shared/enums/enum-code-label-abstract.enum';
-import { Group } from '../model/group';
-import { Post } from '../model/post';
+import {EnumCodeLabelAbstract} from 'src/app/shared/enums/enum-code-label-abstract.enum';
+import {Group} from '../model/group';
+import {Post} from '../model/post';
 
 export enum SortParameterCode {
   Commentaires = 'COMMENTS',

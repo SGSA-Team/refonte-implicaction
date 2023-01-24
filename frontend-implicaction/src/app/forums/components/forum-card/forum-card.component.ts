@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Univers } from 'src/app/shared/enums/univers';
-import { Group } from '../../model/group';
+import {Component, Input, OnInit} from '@angular/core';
+import {Univers} from 'src/app/shared/enums/univers';
+import {Group} from '../../model/group';
 
 @Component({
   selector: 'app-forum-card',
@@ -11,7 +11,9 @@ export class ForumCardComponent implements OnInit {
   @Input() group: Group;
   redirectionUrl: string;
 
-  constructor() {}
+  constructor() {
+  }
+
   ngOnInit(): void {
     this.redirectionUrl = `/${Univers.FORUMS.url}/${this.group.id}`;
   }
