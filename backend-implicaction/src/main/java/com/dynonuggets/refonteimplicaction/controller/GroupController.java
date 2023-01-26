@@ -1,6 +1,7 @@
 package com.dynonuggets.refonteimplicaction.controller;
 
 import com.dynonuggets.refonteimplicaction.dto.GroupDto;
+import com.dynonuggets.refonteimplicaction.model.Group;
 import com.dynonuggets.refonteimplicaction.service.GroupService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.dynonuggets.refonteimplicaction.utils.ApiUrls.*;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -57,6 +59,13 @@ public class GroupController {
     public ResponseEntity<List<GroupDto>> getAllByTopPosting(@RequestParam int limit) {
         List<GroupDto> groupDtos = groupService.getAllByTopPosting(limit);
         return ResponseEntity.ok(groupDtos);
+    }
+
+
+    @GetMapping(GET_BY_ID_URI)
+    public ResponseEntity<Optional<Group>> getById(@PathVariable final Long id) {
+        Optional<Group> group = groupService.getById(id);
+        return ResponseEntity.ok(group);
     }
 
     @PostMapping(SUBSCRIBE_GROUP)

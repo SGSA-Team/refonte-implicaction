@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 import static com.dynonuggets.refonteimplicaction.utils.Message.GROUP_NOT_FOUND_MESSAGE;
 import static java.util.stream.Collectors.toList;
@@ -70,6 +71,12 @@ public class GroupService {
         return topPostings.stream()
                 .map(groupAdapter::toDto)
                 .collect(toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Group> getById(Long id) {
+        final Optional<Group> group = groupRepository.findById(id);
+        return group;
     }
 
     @Transactional
