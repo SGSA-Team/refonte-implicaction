@@ -43,6 +43,9 @@ export class Constants {
 
   public static readonly LATEST_POSTS_COUNT = 3;
 
+  public static readonly TINYMCE_API_KEY =
+    'l69xj43xtfhsi9nm3l8arxs95ilk3lfthoes67o1w8cd7sl3';
+
   public static readonly DEFAULT_YEAR_RANGE = `1900:${
     new Date().getFullYear() + 1
   }`;
