@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {
   BaseWithPaginationAndFilterComponent
 } from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
@@ -22,7 +22,7 @@ import {Constants} from 'src/app/config/constants';
 })
 export class CustomTableWithSearchBarComponent
   extends BaseWithPaginationAndFilterComponent<Group, Criteria>
-  implements OnInit {
+  implements OnInit, OnDestroy {
   @Input() tableType: ForumTableTypesEnum;
   @Input() labels: string[];
 
@@ -53,7 +53,7 @@ export class CustomTableWithSearchBarComponent
     this.pageable.rowsPerPages = this.ROWS_PER_PAGE_OPTIONS;
     this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0];
     this.groupService.filterTag$.subscribe((tags) => {
-      if (tags.length > 0) {
+      if (tags && tags.length) {
         this.filteredTagData = this.pageable.content as Group[];
         tags.map((tag) => {
           return (this.filteredTagData = tag.callBack(
@@ -76,7 +76,7 @@ export class CustomTableWithSearchBarComponent
     }
   }
 
-  sortForumData(column: SortParameterCode) {
+  sortForumData(column: string) {
     if (this.tableType.code === ForumTableTypeCode.FORUM) {
       if (this.filtered) {
         this.filteredTagData.sort(this.sortByColumn<Group>(column));
@@ -88,7 +88,7 @@ export class CustomTableWithSearchBarComponent
     }
   }
 
-  sortByColumn<T>(column: SortParameterCode) {
+  sortByColumn<T>(column: string) {
     this.currentSortColumn = column;
     const enumParam = SortParametersEnum.from(SortParameterCode[column]);
     const sortLogic = (sortDir: SortDirectionNumberEnum) => {
@@ -209,6 +209,10 @@ export class CustomTableWithSearchBarComponent
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.groupService.filterTag$.next([])
   }
 
   protected innerPaginate(): void {

@@ -21,19 +21,18 @@
       <ul class="infos">
         <li *ngFor="let label of labels" class="text-nowrap">
           <button
-            class="sort-btn"
             (click)="sortForumData(label)"
-            pButton
             [icon]="
-              currentSortColmun === label &&
+              currentSortColumn === label &&
               pageable.sortOrder === SortDirEnum.ASC
                 ? 'pi pi-sort-up'
-                : currentSortColmun === label &&
+                : currentSortColumn === label &&
                   pageable.sortOrder === SortDirEnum.DESC
                 ? 'pi pi-sort-down'
                 : 'pi pi-sort'
             "
-            class="p-button-rounded"
+            class="p-button-rounded sort-btn"
+            pButton
           ></button>
           {{ label }}
         </li>
