@@ -67,7 +67,6 @@ export class TopGroupListingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.groupService.filterTag$.subscribe((t) => {
-      console.log(t)
     })
     this.currentUser = this.authService.getCurrentUser();
     this.userService
