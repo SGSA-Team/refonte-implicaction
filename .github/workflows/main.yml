@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_ORGANIZATION: 'sgsa-team
+          SONAR_ORGANIZATION: 'sgsa-team'
           REPOSITORY: ${{ github.repository }}
         run: |
           PROJECT_KEY=$(echo "${REPOSITORY//\//_}" | tr '[ :upper: ]' '[ :lower: ]') # mise en minuscule de la project key pour matcher avec les pré-requis de noms de sonarcloud
