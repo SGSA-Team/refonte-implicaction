@@ -54,9 +54,7 @@ export class CommentListComponent
 
   ngOnInit(): void {
     this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0]
-    this.currentUserImageUrl =
-      this.authService.getCurrentUser().imageUrl ??
-      Constants.USER_IMAGE_DEFAULT_URI;
+    console.log(this.currentUserImageUrl)
     this.subscription = this.route.paramMap.subscribe((paramMap) => {
       this.postId = paramMap.get('postId');
       this.forumId = paramMap.get('forumId')
@@ -92,7 +90,6 @@ export class CommentListComponent
         this.pageable.page = this.getNewCommentPage();
 
         this.paginate(this.pageable);
-        // FIXME: si la nouvelle page n'existe pas encore, le paginator n'indique pas la bonne page sélectionnée
         this.paginator.changePage(this.pageable.page);
       },
       () =>
