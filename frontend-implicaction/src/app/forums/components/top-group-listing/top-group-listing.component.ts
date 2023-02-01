@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Group} from '../../model/group';
 import {GroupService} from '../../services/group.service';
 import {ToasterService} from '../../../core/services/toaster.service';
@@ -16,7 +16,7 @@ import {Univers} from '../../../shared/enums/univers';
   templateUrl: './top-group-listing.component.html',
   styleUrls: ['./top-group-listing.component.scss'],
 })
-export class TopGroupListingComponent implements OnInit {
+export class TopGroupListingComponent implements OnInit, OnDestroy {
   readonly GROUP_IMG_DEFAULT_URI = Constants.GROUP_IMAGE_DEFAULT_URI;
 
   @Input()
@@ -36,7 +36,6 @@ export class TopGroupListingComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService
   ) {
-    // TODO: idée de filtre par rapport aux tags a trouvé => démonstration de filtre
     this.tags = Constants.TAG_LIST_DEMO.map((tag, index) => {
       return {
         active: false,
@@ -67,6 +66,8 @@ export class TopGroupListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.groupService.filterTag$.subscribe((t) => {
+    })
     this.currentUser = this.authService.getCurrentUser();
     this.userService
       .getUserGroups(this.currentUser.id)
@@ -88,10 +89,10 @@ export class TopGroupListingComponent implements OnInit {
   }
 
   applyTag(selectedTag: Tag) {
-    this.groupService.filterTag$.pipe(take(1)).subscribe((tags) => {
-      if (!tags.includes(selectedTag)) {
+    this.groupService.filterTag$.pipe(take(1)).subscribe((tag) => {
+      if (!tag.includes(selectedTag)) {
         selectedTag.active = true;
-        this.groupService.filterTag$.next([...tags, selectedTag]);
+        this.groupService.filterTag$.next([...tag, selectedTag]);
       } else {
         this.removeTag(selectedTag.value);
       }
@@ -100,6 +101,7 @@ export class TopGroupListingComponent implements OnInit {
 
   removeTag(idx: number) {
     this.groupService.filterTag$.pipe(take(1)).subscribe((tags) => {
+      if (!tags) return
       tags.find((v) => v.value === idx).active = false;
       const tagValues = this.groupService.filterTag$.getValue();
       const removedTagValues = tagValues.filter((v) => v.value !== idx);
@@ -130,6 +132,10 @@ export class TopGroupListingComponent implements OnInit {
           'Une erreur est survenue lors de la souscription au groupe'
         )
     );
+  }
+
+  ngOnDestroy() {
+    this.groupService.filterTag$.next([])
   }
 }
 
