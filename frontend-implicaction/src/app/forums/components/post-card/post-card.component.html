@@ -1,16 +1,16 @@
 <div class="element">
   <div class="element-img-box">
     <img
+      [routerLink]="userProfileUrl"
       [src]="post?.userImageUrl || 'assets/img/job-posting-img.png'"
       alt="group-logo"
       class="d-none d-sm-inline-block logo element-img cursor-pointer"
-      [routerLink]="userProfileUrl"
     />
   </div>
   <div class="element-info">
     <h4 class="fw-bold">{{ post.name }}</h4>
     <div class="post-description">
-      <span class="cursor-pointer" [routerLink]="userProfileUrl">{{
+      <span [routerLink]="userProfileUrl" class="cursor-pointer">{{
         post.username
         }}</span>
       <span>{{ post.duration }}</span>

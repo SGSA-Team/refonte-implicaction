@@ -221,6 +221,8 @@ export class CustomTableWithSearchBarComponent
             this.pageable.totalPages = data.totalPages;
             this.pageable.totalElements = data.totalElements;
             this.pageable.content = data.content;
+            console.log(this.pageable.content)
+
             this.setRandomTag();
           },
           () =>
@@ -237,6 +239,8 @@ export class CustomTableWithSearchBarComponent
         .subscribe(
           (data) => {
             this.posts = data;
+            console.log(this.posts)
+
           },
           () =>
             this.toastService.error(

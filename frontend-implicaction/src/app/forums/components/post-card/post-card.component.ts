@@ -11,8 +11,10 @@ export class PostCardComponent implements OnInit {
   @Input() post: Post;
   readonly univers = Univers;
   userProfileUrl: string;
+  redirectionUrl: string;
 
   ngOnInit(): void {
+    // this.redirectionUrl = `/${Univers.FORUMS.url}/${this.post.id}`;
     this.userProfileUrl = `/${this.univers.USERS.url}/${this.post.userId}/profile`;
   }
 }

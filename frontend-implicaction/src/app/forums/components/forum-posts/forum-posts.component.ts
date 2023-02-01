@@ -79,6 +79,7 @@ export class ForumPostsComponent
       .subscribe(
         (data) => {
           this.pageable.content = data.content;
+          console.log(data.content)
         },
         () =>
           this.toastService.error(
