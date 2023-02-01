@@ -24,43 +24,19 @@ import {Criteria} from '../../../shared/models/Criteria';
 export class CommentListComponent
   extends BaseWithPaginationAndFilterComponent<Comment, Criteria>
   implements OnInit, OnDestroy {
-  readonly ROWS_PER_PAGE_OPTIONS = [25, 50, 100];
+  readonly ROWS_PER_PAGE_OPTIONS = [10, 25, 50, 100];
 
   @ViewChild('paginator', {static: true})
   paginator: Paginator;
 
   @Output()
   countChange: EventEmitter<number> = new EventEmitter();
-
   currentUserImageUrl = Constants.USER_IMAGE_DEFAULT_URI;
   subscription: Subscription;
   postId: string;
+  forumId: string;
   createCommentForm: UntypedFormGroup;
   commentPayload: CommentPayload;
-  commentTest: Comment[] = [
-    {
-      text: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla porta purus, ac rutrum nisi viver</p>',
-      username: 'Monsieur test',
-      userImageUrl: 'assets/img/avatar-ia-user.png',
-      id: '12',
-      duration: '3 Janvier 2017',
-    },
-    {
-      text: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla porta purus, ac rutrum nisi viver</p>',
-      username: 'Monsieur test',
-      userImageUrl: 'assets/img/avatar-ia-user.png',
-      id: '17',
-      duration: '3 Janvier 2017',
-      userId: '55',
-    },
-    {
-      text: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla porta purus, ac rutrum nisi viver</p>',
-      username: 'Monsieur test',
-      userImageUrl: 'assets/img/avatar-ia-user.png',
-      id: '15',
-      duration: '3 Janvier 2017',
-    },
-  ];
 
   constructor(
     private authService: AuthService,
@@ -77,17 +53,21 @@ export class CommentListComponent
   }
 
   ngOnInit(): void {
+    this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0]
     this.currentUserImageUrl =
       this.authService.getCurrentUser().imageUrl ??
       Constants.USER_IMAGE_DEFAULT_URI;
     this.subscription = this.route.paramMap.subscribe((paramMap) => {
       this.postId = paramMap.get('postId');
+      this.forumId = paramMap.get('forumId')
       this.commentPayload = {
+        username: '',
+        groupId: this.forumId,
         text: '',
         postId: this.postId,
       };
 
-      this.paginate();
+      this.innerPaginate();
     });
 
     this.createCommentForm = new UntypedFormGroup({
@@ -136,6 +116,7 @@ export class CommentListComponent
           this.pageable.totalPages = data.totalPages;
           this.pageable.totalElements = data.totalElements;
           this.pageable.content = data.content;
+          console.log(data)
           this.emitCountChange();
         },
         () =>
