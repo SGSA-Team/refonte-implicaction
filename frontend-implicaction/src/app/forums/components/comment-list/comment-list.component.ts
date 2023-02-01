@@ -54,7 +54,6 @@ export class CommentListComponent
 
   ngOnInit(): void {
     this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0]
-    console.log(this.currentUserImageUrl)
     this.subscription = this.route.paramMap.subscribe((paramMap) => {
       this.postId = paramMap.get('postId');
       this.forumId = paramMap.get('forumId')
