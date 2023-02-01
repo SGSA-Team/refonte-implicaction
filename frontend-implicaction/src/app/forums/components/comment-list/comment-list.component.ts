@@ -116,7 +116,6 @@ export class CommentListComponent
           this.pageable.totalPages = data.totalPages;
           this.pageable.totalElements = data.totalElements;
           this.pageable.content = data.content;
-          console.log(data)
           this.emitCountChange();
         },
         () =>
