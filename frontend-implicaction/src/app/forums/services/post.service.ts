@@ -45,4 +45,8 @@ export class PostService {
   getPopularPostsByForum(pageable: Pageable<any>, groupId: string): Observable<any> {
     return this.http.get(this.endpointsService.getPopularPostsByForum(pageable, groupId));
   }
+
+   /*getPostsByForumId(pageable: Pageable<any>, groupId: number): Observable<any> {
+    return this.http.get(this.endpointsService.getPostsByForumId(pageable, groupId));
+  }*/
 }

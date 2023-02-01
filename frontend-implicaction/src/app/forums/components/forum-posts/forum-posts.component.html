@@ -4,10 +4,7 @@
     <h6>Descriptions...</h6>
   </div>
   <div id="forum-content">
-    <app-custom-table-with-search-bar
-      [labels]="['Likes', 'Messages', 'Vues']"
-      [tableType]="tableType.POST"
-    ></app-custom-table-with-search-bar>
+
     <div id="forum-right-content">
       <button (click)="openSidebarCreationPost()" class="btn btn-primary" id="create-post-btn">
         <i class="pi pi-comment me-4" style="font-size: 1.5rem"></i>
@@ -18,8 +15,6 @@
         <div class="card">
           <div class="card-header header text-left">
             <h2 class="m-0">Top</h2>
-            <p-tabMenu [activeItem]="optionsTopMenu[0]" [model]="optionsTopMenu">
-            </p-tabMenu>
           </div>
           <div *ngIf="!isLoading; else skeletonTop" class="card-body">
             <div *ngFor="let post of pageable.content; let index = index" class="my-4">
@@ -33,8 +28,6 @@
           </div>
         </div>
       </div>
-      <app-top-group-listing
-      ></app-top-group-listing>
     </div>
     <ng-template #skeletonTop>
       <div *ngFor="let i of [0,1,2]" class="custom-skeleton p-4">
