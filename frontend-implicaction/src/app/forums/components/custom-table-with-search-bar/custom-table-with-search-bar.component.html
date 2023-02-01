@@ -54,8 +54,9 @@
         ></app-forum-card>
       </div>
 
-      <div *ngIf="tableType.code === tableTypeCode.POST && posts?.length > 0">
-        <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
+      <div *ngIf="tableType.code === tableTypeCode.POST && pageable?.content">
+        f{{pageable}}
+        <app-post-card *ngFor="let post of pageable.content" [post]="post"></app-post-card>
       </div>
     </div>
   </div>

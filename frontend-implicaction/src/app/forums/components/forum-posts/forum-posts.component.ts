@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {ForumTableTypesEnum} from '../../enums/table-type-enum';
 import {MenuItem} from 'primeng/api';
 import {
@@ -20,10 +21,23 @@ import { BaseWithPaginationAndFilterComponent } from 'src/app/shared/components/
 import { Criteria } from 'src/app/shared/models/Criteria';
 import { SidebarService } from 'src/app/shared/services/sidebar.service';
 import {ForumTableTypesEnum} from "../../enums/table-type-enum";
+=======
+>>>>>>> [SGSA-107] wip solving the issue... but a new one apear
 import { Group } from '../../model/group';
-import { PostService } from '../../services/post.service';
 import {finalize} from 'rxjs/operators';
+<<<<<<< HEAD
 >>>>>>> [SGSA-107] creation du tableau pour les post d'un forum
+=======
+import {ForumTableTypesEnum} from '../../enums/table-type-enum';
+import {
+  BaseWithPaginationAndFilterComponent
+} from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
+import {Criteria} from '../../../shared/models/Criteria';
+import {ActivatedRoute} from '@angular/router';
+import {ToasterService} from '../../../core/services/toaster.service';
+import {PostService} from '../../services/post.service';
+import {SidebarService} from '../../../shared/services/sidebar.service';
+>>>>>>> [SGSA-107] wip solving the issue... but a new one apear
 
 @Component({
   selector: 'app-forum-posts',
@@ -108,9 +122,13 @@ export class ForumPostsComponent extends BaseWithPaginationAndFilterComponent<Gr
  
   }
 
+  getPost(pageable) {
+    return this.postService.getPopularPostsByForum(pageable, this.forumId);
+  }
+
   protected innerPaginate(): void {
-    this.postService
-      .getPostsByForumId(this.pageable, this.forumId)
+    /*this.postService
+      .getPopularPostsByForum(this.pageable, this.forumId)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe(
         (data) => {
@@ -126,8 +144,12 @@ export class ForumPostsComponent extends BaseWithPaginationAndFilterComponent<Gr
             'Oops',
             'Une erreur est survenue lors de la récupération de la liste des groupes'
           )
+<<<<<<< HEAD
       );
 >>>>>>> [SGSA-107] creation du tableau pour les post d'un forum
+=======
+      );*/
+>>>>>>> [SGSA-107] wip solving the issue... but a new one apear
   }
 
   openSidebarCreationPost(): void {
