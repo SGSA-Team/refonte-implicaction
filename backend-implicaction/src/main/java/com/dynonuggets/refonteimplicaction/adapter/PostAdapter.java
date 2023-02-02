@@ -45,6 +45,7 @@ public class PostAdapter {
                 .description(post.getDescription())
                 .username(post.getUser().getUsername())
                 .userId(post.getUser().getId())
+                .groupId(post.getGroup().getId())
                 .groupName(subredditName)
                 .commentCount(commentCount)
                 .duration(DateUtils.getDurationAsString(post.getCreatedAt()))

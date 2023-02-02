@@ -15,6 +15,8 @@ public class PostResponse {
     private String username;
     private Long userId;
     private String userImageUrl;
+    private Long groupId;
+
     private String groupName;
     private Integer voteCount;
 
