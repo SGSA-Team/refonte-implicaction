@@ -90,6 +90,7 @@ class PostAdapterTest {
         assertThat(postResponse.getUrl()).isEqualTo(expected.getUrl());
         assertThat(postResponse.getDescription()).isEqualTo(expected.getDescription());
         assertThat(postResponse.getUsername()).isEqualTo(expected.getUser().getUsername());
+        assertThat(postResponse.getGroupId()).isEqualTo(expected.getGroup().getId());
         assertThat(postResponse.getGroupName()).isEqualTo(expected.getGroup().getName());
         assertThat(postResponse.getCommentCount()).isEqualTo(expectedCommentCount);
         assertThat(postResponse.getVoteCount()).isEqualTo(expected.getVoteCount());
