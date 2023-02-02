@@ -84,6 +84,5 @@ export class ForumPostsComponent
       groupId: this.forumId,
     });
   }
-
 }
 
