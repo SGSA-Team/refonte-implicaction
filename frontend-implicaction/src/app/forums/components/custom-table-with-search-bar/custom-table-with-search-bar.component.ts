@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {
   BaseWithPaginationAndFilterComponent
 } from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
@@ -22,7 +22,7 @@ import {Constants} from 'src/app/config/constants';
 })
 export class CustomTableWithSearchBarComponent
   extends BaseWithPaginationAndFilterComponent<any, Criteria>
-  implements OnInit {
+  implements OnInit, OnDestroy {
   @Input() tableType: ForumTableTypesEnum;
   @Input() labels: string[];
 
@@ -213,9 +213,9 @@ export class CustomTableWithSearchBarComponent
     });
   }
 
-  /*ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.groupService.filterTag$.next([])
-  }*/
+  }
 
   protected innerPaginate(): void {
     this.getData(this.pageable)
