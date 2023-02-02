@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {
   BaseWithPaginationAndFilterComponent
 } from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
@@ -218,27 +218,21 @@ export class CustomTableWithSearchBarComponent
   }*/
 
   protected innerPaginate(): void {
-    try {
-      this.getData(this.pageable)
-        .pipe(finalize(() => (this.isLoading = false)))
-        .subscribe(
-          (data) => {
-            this.pageable.content = data.content || data;
-            if (data.totalPages && data.totalElements) {
-              this.pageable.totalPages = data.totalPages;
-              this.pageable.totalElements = data.totalElements;
-            }
-          },
-          () =>
-            this.toastService.error(
-              'Erreur',
-              'Une erreur est survenue lors de la récupération de la liste'
-            )
-        );
-    } catch (e) {
-      console.log("ERROR With post for a Forum")
-
-    }
-
+    this.getData(this.pageable)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe(
+        (data) => {
+          this.pageable.content = data.content || data;
+          if (data.totalPages && data.totalElements) {
+            this.pageable.totalPages = data.totalPages;
+            this.pageable.totalElements = data.totalElements;
+          }
+        },
+        () =>
+          this.toastService.error(
+            'Erreur',
+            'Une erreur est survenue lors de la récupération de la liste'
+          )
+      );
   }
 }

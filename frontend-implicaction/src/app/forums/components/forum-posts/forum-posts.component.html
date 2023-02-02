@@ -4,12 +4,11 @@
     <h6>Descriptions...</h6>
   </div>
   <div id="forum-content">
-<<<<<<< HEAD
-
-=======
-    <app-custom-table-with-search-bar *ngIf="forumId" [getData]="getPost" [labels]="['Likes', 'Messages', 'Vues']"
+    <app-custom-table-with-search-bar
+      *ngIf="this.forumId"
+      [getData]="getPost"
+      [labels]="['Likes', 'Messages', 'Vues']"
       [tableType]="tableType.POST"></app-custom-table-with-search-bar>
->>>>>>> [SGSA-107] wip solving the issue... but a new one apear
     <div id="forum-right-content">
       <button (click)="openSidebarCreationPost()" class="btn btn-primary" id="create-post-btn">
         <i class="pi pi-comment me-4" style="font-size: 1.5rem"></i>

@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import {ForumTableTypesEnum} from '../../enums/table-type-enum';
 import {MenuItem} from 'primeng/api';
 import {
@@ -9,42 +7,17 @@ import {
 import {Criteria} from '../../../shared/models/Criteria';
 import {ActivatedRoute} from '@angular/router';
 import {Post} from '../../model/post';
-import {finalize} from 'rxjs/operators';
 import {ToasterService} from '../../../core/services/toaster.service';
 import {PostService} from '../../services/post.service';
 import {SidebarService} from '../../../shared/services/sidebar.service';
 import {CreatePostFormComponent} from '../create-post-form/create-post-form.component';
-=======
-import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'src/app/core/services/toaster.service';
-import { BaseWithPaginationAndFilterComponent } from 'src/app/shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
-import { Criteria } from 'src/app/shared/models/Criteria';
-import { SidebarService } from 'src/app/shared/services/sidebar.service';
-import {ForumTableTypesEnum} from "../../enums/table-type-enum";
-=======
->>>>>>> [SGSA-107] wip solving the issue... but a new one apear
-import { Group } from '../../model/group';
-import {finalize} from 'rxjs/operators';
-<<<<<<< HEAD
->>>>>>> [SGSA-107] creation du tableau pour les post d'un forum
-=======
-import {ForumTableTypesEnum} from '../../enums/table-type-enum';
-import {
-  BaseWithPaginationAndFilterComponent
-} from '../../../shared/components/base-with-pagination-and-filter/base-with-pagination-and-filter.component';
-import {Criteria} from '../../../shared/models/Criteria';
-import {ActivatedRoute} from '@angular/router';
-import {ToasterService} from '../../../core/services/toaster.service';
-import {PostService} from '../../services/post.service';
-import {SidebarService} from '../../../shared/services/sidebar.service';
->>>>>>> [SGSA-107] wip solving the issue... but a new one apear
 
 @Component({
   selector: 'app-forum-posts',
   templateUrl: './forum-posts.component.html',
   styleUrls: ['./forum-posts.component.scss'],
 })
-<<<<<<< HEAD
+
 export class ForumPostsComponent
   extends BaseWithPaginationAndFilterComponent<Post, Criteria>
   implements OnInit {
@@ -52,7 +25,11 @@ export class ForumPostsComponent
   optionsTopMenu: MenuItem[];
   tableType = ForumTableTypesEnum;
   topRange: number = 7;
+  readonly
+
   forumId: string;
+  isLoading = false;
+  protected
 
   constructor(
     protected route: ActivatedRoute,
@@ -67,10 +44,10 @@ export class ForumPostsComponent
     this.route.params.subscribe((params) => {
       this.forumId = params.forumId;
     });
+
     this.isLoading = true;
     this.pageable.rowsPerPages = this.ROWS_PER_PAGE_OPTIONS;
     this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0];
-    this.innerPaginate();
     this.optionsTopMenu = [
       {
         label: '7 jours',
@@ -88,68 +65,15 @@ export class ForumPostsComponent
         },
       },
     ];
-=======
-export class ForumPostsComponent extends BaseWithPaginationAndFilterComponent<Group, Criteria>
-  implements OnInit  {
-
-  tableType = ForumTableTypesEnum;
-  readonly ROWS_PER_PAGE_OPTIONS = [5];
-
-  forumId: number;
-  topRange: number = 7;
-  isLoading = false;
-
-  constructor(
-    protected route: ActivatedRoute,
-    private toastService: ToasterService,
-    private postService: PostService,
-    private sidebarService: SidebarService
-  ) {
-    super(route);
-  }
-
-  ngOnInit() {
-    this.isLoading = true
-    this.pageable.rowsPerPages = this.ROWS_PER_PAGE_OPTIONS;
-    this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0];
-    this.route.params.subscribe(params => {
-      console.log(params['forumId']) //log the value of id
-      this.forumId = params['forumId'];
-    });
-    if (this.forumId) {
-      this.innerPaginate()
-    }
- 
   }
 
   getPost(pageable) {
-    return this.postService.getPopularPostsByForum(pageable, this.forumId);
-  }
-
-  protected innerPaginate(): void {
-    /*this.postService
-      .getPopularPostsByForum(this.pageable, this.forumId)
-      .pipe(finalize(() => (this.isLoading = false)))
-      .subscribe(
-        (data) => {
-          console.log(data.content)
-          this.pageable.totalPages = data.totalPages;
-          this.pageable.totalElements = data.totalElements;
-          this.pageable.content = data.content;
-          this.pageable.rowsPerPages = this.ROWS_PER_PAGE_OPTIONS;
-          this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0];
-        },
-        () =>
-          this.toastService.error(
-            'Oops',
-            'Une erreur est survenue lors de la récupération de la liste des groupes'
-          )
-<<<<<<< HEAD
-      );
->>>>>>> [SGSA-107] creation du tableau pour les post d'un forum
-=======
-      );*/
->>>>>>> [SGSA-107] wip solving the issue... but a new one apear
+    this.route.params.subscribe((params) => {
+      this.forumId = params.forumId;
+    });
+    if (this.forumId) {
+      return this.postService.getPopularPostsByForum(pageable, this.forumId);
+    }
   }
 
   openSidebarCreationPost(): void {
@@ -161,19 +85,5 @@ export class ForumPostsComponent extends BaseWithPaginationAndFilterComponent<Gr
     });
   }
 
-  protected innerPaginate(): void {
-    this.postService
-      .getPopularPostsByForum(this.pageable, this.forumId)
-      .pipe(finalize(() => (this.isLoading = false)))
-      .subscribe(
-        (data) => {
-          this.pageable.content = data.content;
-        },
-        () =>
-          this.toastService.error(
-            'Oops',
-            'Une erreur est survenue lors de la récupération de la liste des groupes'
-          )
-      );
-  }
 }
+
