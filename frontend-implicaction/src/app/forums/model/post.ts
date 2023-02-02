@@ -7,6 +7,7 @@ export interface Post {
   username?: string;
   userId?: string;
   userImageUrl?: string;
+  groupId?: number;
   groupName?: string;
   commentCount?: number;
   duration?: string;
