@@ -21,10 +21,12 @@ import {Constants} from 'src/app/config/constants';
   styleUrls: ['./custom-table-with-search-bar.component.scss'],
 })
 export class CustomTableWithSearchBarComponent
-  extends BaseWithPaginationAndFilterComponent<Group, Criteria>
+  extends BaseWithPaginationAndFilterComponent<any, Criteria>
   implements OnInit, OnDestroy {
   @Input() tableType: ForumTableTypesEnum;
   @Input() labels: string[];
+
+  @Input() getData: any;
 
   readonly ROWS_PER_PAGE_OPTIONS = [5];
   isLoading = true;
@@ -164,7 +166,7 @@ export class CustomTableWithSearchBarComponent
             (data) => {
               this.pageable.totalPages = data.totalPages;
               this.pageable.totalElements = data.totalElements;
-              this.posts = data.content;
+              this.pageable.content = data.content;
             },
             () =>
               this.toastService.error(
@@ -180,7 +182,7 @@ export class CustomTableWithSearchBarComponent
           .pipe(finalize(() => (this.isLoading = false)))
           .subscribe(
             (data) => {
-              this.posts = data;
+              this.pageable.content = data;
             },
             () =>
               this.toastService.error(
@@ -216,38 +218,21 @@ export class CustomTableWithSearchBarComponent
   }
 
   protected innerPaginate(): void {
-    if (this.tableType.code === ForumTableTypeCode.FORUM) {
-      this.groupService
-        .getAllGroups(this.pageable)
-        .pipe(finalize(() => (this.isLoading = false)))
-        .subscribe(
-          (data) => {
+    this.getData(this.pageable)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe(
+        (data) => {
+          this.pageable.content = data.content || data;
+          if (data.totalPages && data.totalElements) {
             this.pageable.totalPages = data.totalPages;
             this.pageable.totalElements = data.totalElements;
-            this.pageable.content = data.content;
-            this.setRandomTag();
-          },
-          () =>
-            this.toastService.error(
-              'Oops',
-              'Une erreur est survenue lors de la récupération de la liste des groupes'
-            )
-        );
-    }
-    if (this.tableType.code === ForumTableTypeCode.POST) {
-      this.postService
-        .getLatestPosts(10)
-        .pipe(finalize(() => (this.isLoading = false)))
-        .subscribe(
-          (data) => {
-            this.posts = data;
-          },
-          () =>
-            this.toastService.error(
-              'Oops',
-              'Une erreur est survenue lors de la récupération de la liste des postes'
-            )
-        );
-    }
+          }
+        },
+        () =>
+          this.toastService.error(
+            'Erreur',
+            'Une erreur est survenue lors de la récupération de la liste'
+          )
+      );
   }
 }
