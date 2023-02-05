@@ -35,7 +35,7 @@ public class Post {
 
     private Integer views = 0;
 
-
+    
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

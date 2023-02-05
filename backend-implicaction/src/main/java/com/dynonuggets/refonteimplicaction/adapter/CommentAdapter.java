@@ -15,6 +15,8 @@ public class CommentAdapter {
                 .post(post)
                 .user(user)
                 .group(group)
+                .isResponse(dto.isResponse())
+                .responseId(dto.getResponseId())
                 .build();
     }
 
@@ -30,6 +32,7 @@ public class CommentAdapter {
                 .username(model.getUser().getUsername())
                 .userId(model.getUser().getId())
                 .userImageUrl(userImageUrl)
+                .isResponse(model.isResponse())
                 .build();
     }
 }
