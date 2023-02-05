@@ -16,8 +16,7 @@ export class CommentTileComponent {
   constants = Constants;
   univers = Univers;
   @Output() responseTo = new EventEmitter<Comment>();
-
-
+  
   constructor(private scroller: ViewportScroller,
   ) {
   }

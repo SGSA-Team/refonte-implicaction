@@ -16,10 +16,12 @@
             <div class="w-100 position-relative">
               <div *ngIf="currentCommentResponse">
                 <div class="response-comment">Répondre à @{{currentCommentResponse.username}}
-                  #{{currentCommentResponse.id}}</div>
+                  #{{currentCommentResponse.id}}
+                  <div (click)="currentCommentResponse = null" class="d-flex align-items-center">
+                    <i class="pi pi-times cursor-pointer" style="font-size: 0.8rem"></i>
+                  </div>
+                </div>
               </div>
-
-
               <p-editor
                 [style]="{ height: '200px' }"
                 class="col-12 col-md-11 w-100"

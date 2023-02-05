@@ -82,6 +82,8 @@ export class CommentListComponent
     }
 
     this.commentPayload.text = this.createCommentForm.get('text').value;
+    this.commentPayload.responseId = this.currentCommentResponse?.id
+
     this.commentService.postComment(this.commentPayload).subscribe(
       () => {
         // réinitialisation du formulaire
