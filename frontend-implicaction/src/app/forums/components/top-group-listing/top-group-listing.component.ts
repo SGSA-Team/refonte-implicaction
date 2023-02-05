@@ -47,7 +47,7 @@ export class TopGroupListingComponent implements OnInit, OnDestroy {
             return content;
           }
           return content.filter((group) => {
-            return group.tagList.includes(tag);
+            return group.tagList ? group.tagList.includes(tag) : group
           });
         },
       };
