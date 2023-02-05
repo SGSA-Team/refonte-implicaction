@@ -35,6 +35,7 @@ export class CommentListComponent
   subscription: Subscription;
   postId: string;
   forumId: string;
+  currentCommentResponse: Comment | null;
   createCommentForm: UntypedFormGroup;
   commentPayload: CommentPayload;
 
@@ -81,6 +82,8 @@ export class CommentListComponent
     }
 
     this.commentPayload.text = this.createCommentForm.get('text').value;
+    this.commentPayload.responseId = this.currentCommentResponse?.id
+
     this.commentService.postComment(this.commentPayload).subscribe(
       () => {
         // réinitialisation du formulaire
@@ -97,6 +100,10 @@ export class CommentListComponent
           `Une erreur est survenue lors de l'ajout du commentaire`
         )
     );
+  }
+
+  setCommentResponse(comment: Comment) {
+    this.currentCommentResponse = comment
   }
 
   ngOnDestroy(): void {

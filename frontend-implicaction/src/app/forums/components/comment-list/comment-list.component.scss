@@ -1,3 +1,14 @@
 .form-color {
   background-color: #fafafa;
 }
+
+.response-comment {
+  padding: 10px;
+  display: inline-flex;
+  background: var(--bluegray-100);
+  border-radius: 6px 6px 0 0;
+  color: black;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.8em;
+}

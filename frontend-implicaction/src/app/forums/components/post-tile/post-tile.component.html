@@ -26,11 +26,7 @@
           </div>
         </div>
         <h2 class="theme-primary margin-left">
-          <a
-            class="text-decoration-none"
-            routerLink="/{{ univers.FORUMS.url }}/{{ post.id }}"
-          >{{ post.name }}</a
-          >
+          {{ post.name }}
         </h2>
 
         <p [innerHTML]="post.description" class="card-text p-5 w-100"></p>
