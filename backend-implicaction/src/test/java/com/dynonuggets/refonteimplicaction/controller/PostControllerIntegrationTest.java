@@ -89,7 +89,7 @@ class PostControllerIntegrationTest extends ControllerIntegrationTestBase {
                 .andExpect(jsonPath("$.url", is(expectedResponse.getUrl())))
                 .andExpect(jsonPath("$.description", is(expectedResponse.getDescription())))
                 .andExpect(jsonPath("$.username", is(expectedResponse.getUsername())))
-                .andExpect(jsonPath("$.groupId", is(expectedResponse.getGroupId())))
+                .andExpect(jsonPath("$.groupId", is(expectedResponse.getGroupId().intValue())))
                 .andExpect(jsonPath("$.groupName", is(expectedResponse.getGroupName())))
                 .andExpect(jsonPath("$.voteCount", is(expectedResponse.getVoteCount())))
                 .andExpect(jsonPath("$.views", is(expectedResponse.getViews())))

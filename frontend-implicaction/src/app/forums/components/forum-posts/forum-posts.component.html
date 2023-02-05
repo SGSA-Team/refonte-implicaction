@@ -1,9 +1,9 @@
 <div>
   <div id="forum-header-description">
-    <h2>Title du Forum</h2>
-    <h6>Descriptions...</h6>
+    <h2 *ngIf="forumTitle">{{forumTitle}}</h2>
+    <h6 *ngIf="forumDescription"> {{forumDescription}}</h6>
   </div>
-  <div id="forum-content">
+  <div id=" forum-content">
     <app-custom-table-with-search-bar
       *ngIf="this.forumId"
       [getData]="getPost"

@@ -74,9 +74,13 @@ public class GroupService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Group> getById(Long id) {
-        final Optional<Group> group = groupRepository.findById(id);
-        return group;
+    public GroupDto getById(Long id) {
+        final Optional<Group> groupOptional = groupRepository.findById(id);
+        if (groupOptional.isPresent()) {
+            final Group group = groupOptional.get();
+            return groupAdapter.toDto(group);
+        }
+        return null;
     }
 
     @Transactional
