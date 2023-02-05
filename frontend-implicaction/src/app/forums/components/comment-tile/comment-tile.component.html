@@ -23,5 +23,5 @@
     </div>
     <p [innerHTML]="comment.text" class="text-justify mb-0 mt-2"></p>
   </div>
-  <button class="btn btn-primary h-100 align-self-end" type="button">Répondre</button>
+  <button (click)="emitAnswerToComment()" class="btn btn-primary h-100 align-self-end" type="button">Répondre</button>
 </div>
