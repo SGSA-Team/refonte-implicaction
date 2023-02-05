@@ -104,6 +104,7 @@ export class Uris {
     static readonly VALIDATED_GROUPS = 'groups/validated';
     static readonly FIND_BY_NAME = 'groups/search';
 
+
   };
 
   /**

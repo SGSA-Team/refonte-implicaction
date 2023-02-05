@@ -70,4 +70,11 @@ export class GroupService {
       this.apiEndpointService.findGroupByName(pageable, groupName)
     );
   }
+
+  findGroupById(groupId: number): Observable<any> {
+    return this.http.get<Group[]>(
+      this.apiEndpointService.findByGroupId(groupId)
+    );
+  }
+  
 }

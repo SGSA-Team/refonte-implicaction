@@ -11,6 +11,7 @@ import {ToasterService} from '../../../core/services/toaster.service';
 import {PostService} from '../../services/post.service';
 import {SidebarService} from '../../../shared/services/sidebar.service';
 import {CreatePostFormComponent} from '../create-post-form/create-post-form.component';
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-forum-posts',
@@ -28,13 +29,15 @@ export class ForumPostsComponent
   readonly
 
   forumId: string;
+  forumTitle: string = "";
+  forumDescription: string = "";
   isLoading = false;
-  protected
 
   constructor(
     protected route: ActivatedRoute,
     private toastService: ToasterService,
     private postService: PostService,
+    private groupService: GroupService,
     private sidebarService: SidebarService
   ) {
     super(route);
@@ -42,7 +45,10 @@ export class ForumPostsComponent
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.forumId = params.forumId;
+      if (params.forumId) {
+        this.forumId = params.forumId;
+        this.getForumInfo(params.forumId)
+      }
     });
 
     this.isLoading = true;
@@ -65,6 +71,22 @@ export class ForumPostsComponent
         },
       },
     ];
+  }
+
+  getForumInfo(id) {
+    this.groupService
+      .findGroupById(id)
+      .subscribe(
+        (data) => {
+          this.forumTitle = data.name
+          this.forumDescription = data.description;
+        },
+        () =>
+          this.toastService.error(
+            'Oops',
+            'Une erreur est survenue lors de la recherche de post: '
+          )
+      );
   }
 
   getPost(pageable) {

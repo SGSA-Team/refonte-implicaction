@@ -16,7 +16,7 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     @Query("select s from Group s  where " +
             "s.name like CONCAT('%',:query, '%')" + "order by s.posts.size desc")
     Page<Group> searchGroup(Pageable pageable, String query);
-
+    
     Optional<Group> findByName(String name);
 
     Page<Group> findAllByValidIsFalse(Pageable pageable);
