@@ -34,11 +34,9 @@ export class CustomTableWithSearchBarComponent
   filtered: boolean = false;
   searchValue: string = '';
   searchOn: boolean = false;
-  currentTag: number;
   filteredTagData: Group[] = [];
   tableTypeCode = ForumTableTypeCode;
-  forumTableType: ForumTableTypeCode = ForumTableTypeCode.FORUM;
-  postTableType: ForumTableTypeCode = ForumTableTypeCode.POST;
+
   currentSortColumn: string;
   SortDirEnum = SortDirectionEnum;
 
@@ -55,7 +53,7 @@ export class CustomTableWithSearchBarComponent
     this.pageable.rowsPerPages = this.ROWS_PER_PAGE_OPTIONS;
     this.pageable.rows = this.ROWS_PER_PAGE_OPTIONS[0];
     this.groupService.filterTag$.subscribe((tags) => {
-      if (tags && tags.length) {
+      if (tags && tags.length && this.tableType.code === ForumTableTypeCode.FORUM) {
         this.filteredTagData = this.pageable.content as Group[];
         tags.map((tag) => {
           return (this.filteredTagData = tag.callBack(
@@ -86,7 +84,7 @@ export class CustomTableWithSearchBarComponent
         this.pageable.content.sort(this.sortByColumn<Group>(column));
       }
     } else if (this.tableType.code === ForumTableTypeCode.POST) {
-      this.posts.sort(this.sortByColumn<Post>(column));
+      this.pageable.content.sort(this.sortByColumn<Post>(column));
     }
   }
 
@@ -144,8 +142,9 @@ export class CustomTableWithSearchBarComponent
             (data) => {
               this.pageable.totalPages = data.totalPages;
               this.pageable.totalElements = data.totalElements;
+             
               this.pageable.content = data.content;
-              this.setRandomTag();
+
             },
             () =>
               this.toastService.error(
@@ -223,6 +222,8 @@ export class CustomTableWithSearchBarComponent
       .subscribe(
         (data) => {
           this.pageable.content = data.content || data;
+          this.setRandomTag();
+
           if (data.totalPages && data.totalElements) {
             this.pageable.totalPages = data.totalPages;
             this.pageable.totalElements = data.totalElements;
