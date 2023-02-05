@@ -17,5 +17,8 @@ public class CommentDto {
     private Long userId;
     private String userImageUrl;
     private Long groupId;
+    private boolean isResponse;
+    private Long responseId;
+
 
 }

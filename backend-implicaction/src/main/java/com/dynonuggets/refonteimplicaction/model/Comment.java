@@ -31,6 +31,11 @@ public class Comment {
 
     private Instant createdAt;
 
+    @Column(name = "is_response")
+    private boolean isResponse;
+    @Column(name = "response_id")
+    private Long responseId;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
