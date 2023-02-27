@@ -93,6 +93,7 @@ export class CommentListComponent
 
         this.paginate(this.pageable);
         this.paginator.changePage(this.pageable.page);
+        this.currentCommentResponse = null;
       },
       () =>
         this.toasterService.error(
