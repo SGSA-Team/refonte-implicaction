@@ -12,8 +12,13 @@ export class PostCardComponent implements OnInit {
   readonly univers = Univers;
   userProfileUrl: string;
   redirectionPostUrl: string;
+  mouseOverLikeIcon: boolean = false;
 
   constructor() {
+  }
+
+  hoverLikeIcon() {
+    this.mouseOverLikeIcon = !this.mouseOverLikeIcon;
   }
 
   ngOnInit(): void {

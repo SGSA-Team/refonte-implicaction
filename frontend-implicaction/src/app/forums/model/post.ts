@@ -13,4 +13,5 @@ export interface Post {
   duration?: string;
   upVote?: boolean;
   downVote?: boolean;
+  views?: number;
 }

@@ -22,7 +22,10 @@
   <div
     class="posts-number text-center d-flex justify-content-center align-items-center gap-2"
   >
-    <i class="pi pi-heart"></i>
+    <i class="pi like-icon"
+       [ngClass]="{'pi-heart': !mouseOverLikeIcon, 'pi-heart-fill': mouseOverLikeIcon}"
+       (mouseenter)="hoverLikeIcon()"
+       (mouseleave)="hoverLikeIcon()"></i>
 
     {{ post.voteCount }}
   </div>
@@ -36,6 +39,6 @@
     class="recentMessage text-center d-flex justify-content-center align-items-center gap-2"
   >
     <i class="pi pi-eye"></i>
-    {{ post.voteCount }}
+    {{ post.views }}
   </div>
 </div>
