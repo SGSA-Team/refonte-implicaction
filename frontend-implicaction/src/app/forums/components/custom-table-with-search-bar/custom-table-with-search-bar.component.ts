@@ -142,7 +142,7 @@ export class CustomTableWithSearchBarComponent
             (data) => {
               this.pageable.totalPages = data.totalPages;
               this.pageable.totalElements = data.totalElements;
-             
+
               this.pageable.content = data.content;
 
             },
@@ -182,6 +182,7 @@ export class CustomTableWithSearchBarComponent
           .subscribe(
             (data) => {
               this.pageable.content = data;
+              this.pageable.totalElements = data.length;
             },
             () =>
               this.toastService.error(
@@ -227,6 +228,8 @@ export class CustomTableWithSearchBarComponent
           if (data.totalPages && data.totalElements) {
             this.pageable.totalPages = data.totalPages;
             this.pageable.totalElements = data.totalElements;
+          }else {
+            this.pageable.totalElements = data.length;
           }
         },
         () =>

@@ -60,6 +60,9 @@
     </div>
   </div>
   <div class="pagination row">
+    <div class="total">
+      <span>Total: <b>{{pageable.totalElements}}</b></span>
+    </div>
     <p-paginator
       (onPageChange)="paginate($event)"
       *ngIf="pageable.totalPages > 0"
