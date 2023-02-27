@@ -4,18 +4,20 @@
       <h6 class="title">{{ tableType.label }}</h6>
       <div class="flex">
         <div class="search-bar form-outline">
-          <span class="p-input-icon-right">
-            <i (click)="search()" class="pi pi-search cursor-pointer"></i>
+          <span class="p-input-icon-right search-bar__box">
             <input
               (keydown.enter)="search()"
               [(ngModel)]="searchValue"
-              class=""
+              class="p-input text-lg search-bar__input"
+              (ngModelChange)="searchInputChange($event)"
               pInputText
               placeholder="Recherche..."
-              type="text"
-            />
+              type="text">
+            <i (click)="clearSearch()"
+               [ngClass]="{'search-bar__clear-icon-on': searchValue, 'search-bar__clear-icon-off': !searchValue}"
+               class="pi pi-times"></i>
           </span>
-          <!-- <p-button (click)="search()" icon="pi pi-search"></p-button> -->
+          <i (click)="search()" class="pi pi-search cursor-pointer search-btn"></i>
         </div>
       </div>
       <ul class="infos">

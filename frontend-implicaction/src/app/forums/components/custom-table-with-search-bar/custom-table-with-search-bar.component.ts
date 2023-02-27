@@ -76,6 +76,13 @@ export class CustomTableWithSearchBarComponent
     }
   }
 
+  searchInputChange(event){
+    if (!event && this.searchOn) {
+      this.innerPaginate();
+      this.searchOn = false;
+    }
+  }
+
   sortForumData(column: string) {
     if (this.tableType.code === ForumTableTypeCode.FORUM) {
       if (this.filtered) {

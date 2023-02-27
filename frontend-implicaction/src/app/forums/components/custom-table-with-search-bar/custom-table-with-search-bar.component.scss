@@ -44,12 +44,12 @@
 
   &__box {
     height: 100% !important;
-    background-color: red;
-
   }
 
   &__input {
     height: 100% !important;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
 
   &__clear-icon-on {
@@ -64,6 +64,18 @@
   &__clear-icon-off {
     display: none;
   }
+}
+
+.search-btn {
+  border-radius: 0px 4px 4px 0px!important;
+  height: 100%;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2B4064;
+  font-weight: bold;
+  background-color: white;
 }
 
 .infos {
