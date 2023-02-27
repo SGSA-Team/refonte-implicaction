@@ -12,6 +12,7 @@ import {PostService} from '../../services/post.service';
 import {SidebarService} from '../../../shared/services/sidebar.service';
 import {CreatePostFormComponent} from '../create-post-form/create-post-form.component';
 import {GroupService} from "../../services/group.service";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-forum-posts',
@@ -38,7 +39,8 @@ export class ForumPostsComponent
     private toastService: ToasterService,
     private postService: PostService,
     private groupService: GroupService,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private location: Location
   ) {
     super(route);
   }
@@ -71,6 +73,10 @@ export class ForumPostsComponent
         },
       },
     ];
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   getForumInfo(id) {

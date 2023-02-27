@@ -1,4 +1,8 @@
 <div>
+  <button type="button" class="btn return-btn" (click)="goBack()">
+    <i class="pi pi-chevron-left" style="font-size: 0.8rem"></i>
+    <span>Retour</span>
+  </button>
   <div id="forum-header-description">
     <h2 *ngIf="forumTitle">{{forumTitle}}</h2>
     <h6 *ngIf="forumDescription"> {{forumDescription}}</h6>
